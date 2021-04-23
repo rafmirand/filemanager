@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mx.com.cargaarchivos.main.model.AwlogLoger;
+import mx.com.cargaarchivos.main.model.CreditoExcel;
 import mx.com.cargaarchivos.service.ObtenerDatosService;
 
 
@@ -27,7 +28,6 @@ public class ControllerUno{
 	 */
 	@Autowired
 	private ObtenerDatosService service;
-
 	/**
 	 * Metodo que obtiene el perfil del usuario
 	 */
@@ -36,6 +36,18 @@ public class ControllerUno{
 	public List<AwlogLoger> obtenerTodosLogs() {
 		LOGGER.debug("Entra a obtener TODOS los LOGS");
 		return service.obtieneTodosLosLogs();
+
+	}
+	
+	/**
+	 * Metodo que obtiene el perfil del usuario
+	 */
+	@GetMapping("/cargaArchivo")
+	@ResponseBody
+	public List<CreditoExcel> obtenerRegistrosExcel() {
+		String path="c:/datos/ok2.docx";
+		LOGGER.debug("Entra a cargar el archivo de excel");
+		return service.obtieneLista(path);
 
 	}
 
